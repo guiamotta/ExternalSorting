@@ -1,5 +1,7 @@
 import heapq
 
+#utilizando um algoritmo de selecao natural, o codigo pre-ordena
+#os segmentos a serem intercalados utilizando um heap minimo de tamanho 3
 def selecao_natural(m, k, r, n, lista):
     tamanho_max_segmento = n//m
     segmentos = []
@@ -48,9 +50,10 @@ def alocacao_segmentos(k, segmentos):
         listas[i % num_listas].append(segmento) 
     return listas
 
+#Formata o print para ficar mais legível
 def formatar_print(listas, y):
     resultado_formatado = ""
-    if len(listas) == 1:  # Verifica se há apenas uma lista
+    if len(listas) == 1:
         resultado_formatado += "{" + " ".join(map(str, listas[0])) + "}" 
         return print(resultado_formatado.strip())
 
@@ -61,6 +64,7 @@ def formatar_print(listas, y):
         resultado_formatado += "\n"
     return print(resultado_formatado.strip())
 
+#Calcula o número de acessos aos registros
 def calculo_beta(m, lista, alfa):
     somatorio_tamanho = 0
     for sequencia in lista:
@@ -69,6 +73,7 @@ def calculo_beta(m, lista, alfa):
         return somatorio_tamanho
     return ((1/(m*len(lista)))*somatorio_tamanho)
 
+#Algoritmo de um passo da intercalação balanceada de P-caminhos
 def intercalacao_balanceada(lista):
     n = len(lista)
     ind = 0
@@ -85,6 +90,7 @@ def intercalacao_balanceada(lista):
             break
     return lista
 
+#Algoritmo de toda a intercalacao balanceada de P-caminhos
 def ordenacao_multicaminhos(m, k, r, n, lista):
     #Fase 0
     segmentos_ordenados = sorted(selecao_natural(m, k, r, n, lista), key=len, reverse=True)
@@ -112,8 +118,8 @@ def ordenacao_multicaminhos(m, k, r, n, lista):
     alfa = operacoes//num_registros
     print(f"final {alfa:.2f}")
 
+#executa o programa
 def main():
-    '''executa o programa'''
     lista = [7, 1, 5, 6, 3, 8, 2, 10, 4, 9, 1, 3, 7, 4, 1, 2, 3]
     m = 3
     k = 4
